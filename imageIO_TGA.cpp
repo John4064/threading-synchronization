@@ -65,7 +65,7 @@ ImageStruct* readTGA(const char* filePath)
 	//	open TARGA input file
 	//--------------------------------
 	FILE* tga_in = fopen(filePath, "rb" );
-	if (tga_in == NULL)
+	if (tga_in == nullptr)
 	{
 		printf("Cannot open image file %s\n", filePath);
 		exit(11);
