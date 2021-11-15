@@ -14,10 +14,8 @@
 |	Jean-Yves Hervé		Dept. of Computer Science and Statistics, URI				|
 |						2018-09-26													|
 +----------------------------------------------------------------------------------*/
-
 #include <cstdlib>        
 #include <cstdio>
-
 #include "imageIO_TGA.h"
 
 void swapRGB_(unsigned char* theData, unsigned int height, unsigned int width);

@@ -15,7 +15,6 @@
 //
 #include "gl_frontEnd.h"
 #include "imageIO_TGA.h"
-
 using namespace std;
 
 //==================================================================================
