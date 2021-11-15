@@ -32,3 +32,8 @@
 *.app
 CMakeLists.txt
 cmake-build-debug/
+.idea/vcs.xml
+.idea/threading-synchronization.iml
+.idea/modules.xml
+.idea/misc.xml
+.idea/.name
