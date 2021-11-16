@@ -238,9 +238,10 @@ void initializeApplication(void)
 	//	right now I read *one* hardcoded image, into my output
 	//	image. This is definitely something that you will want to
 	//	change.
-//	const string hardCodedInput = "./images/_MG_6291.tga";
-	const string hardCodedInput = "_MG_6386.tga";
-	imageOut = readTGA(hardCodedInput.c_str());
+    //	const string hardCodedInput = "./images/_MG_6291.tga";
+	//const string hardCodedInput = "_MG_6386.tga";
+	const string test = "./images/_MG_6291.tga";
+	imageOut = readTGA(test.c_str());
 	launchTime = time(NULL);
 }
 
