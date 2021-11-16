@@ -60,7 +60,7 @@ ImageStruct* imageOut;
 //------------------------------------------------------------------
 //	The variables defined here are for you to modify and add to
 //------------------------------------------------------------------
-#define IN_PATH		"./DataSets/Series02/"
+#define IN_PATH		"./images/"
 #define OUT_PATH	"./Output/"
 
 
@@ -84,6 +84,7 @@ void displayImage(GLfloat scaleX, GLfloat scaleY)
 
 	//--------------------------------------------------------
 	//	stuff to replace or remove.
+    // **** THIS IS WHERE WE SWAP OUT the IMAGE
 	//	Here I assign a random color to a few random pixels
 	//--------------------------------------------------------
 	for (int k=0; k<100; k++) {
@@ -142,8 +143,7 @@ void displayState(void)
 //	This callback function is called when a keyboard event occurs
 //	You can change things here if you want to have keyboard input
 //
-void handleKeyboardEvent(unsigned char c, int x, int y)
-{
+void handleKeyboardEvent(unsigned char c, int x, int y){
 	int ok = 0;
 	
 	switch (c)
@@ -238,10 +238,18 @@ void initializeApplication(void)
 	//	right now I read *one* hardcoded image, into my output
 	//	image. This is definitely something that you will want to
 	//	change.
+
+    //CREATE A LIST OF IMAGES
+    const int numOfImages =11;
+    //const char *images[numOfImages] =
     //	const string hardCodedInput = "./images/_MG_6291.tga";
-	const string hardCodedInput = "_MG_6386.tga";
-	const string test = "./images/_MG_6291.tga";
-	imageOut = readTGA(hardCodedInput.c_str());
+	string images[numOfImages] = {"./images/_MG_6291.tga","./images/_MG_6293.tga","./images/_MG_6294.tga",
+                                  "./images/_MG_6295.tga","./images/_MG_6296.tga","./images/_MG_6297.tga",
+                                  "./images/_MG_6298.tga","./images/_MG_6299.tga","./images/_MG_6300.tga",
+                                  "./images/_MG_6301.tga","./images/_MG_6302.tga"};
+    const string hardCodedInput = "_MG_6386.tga";
+	imageOut = readTGA(images[0].c_str());
+    //imageOut = readTGA(hardCodedInput.c_str());
 	launchTime = time(NULL);
 }
 
