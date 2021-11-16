@@ -22,7 +22,9 @@ using namespace std;
 //==================================================================================
 void myKeyboard(unsigned char c, int x, int y);
 void initializeApplication(void);
-
+//NEED TO CREATE THIS
+int computeDelta(ImageStruct* img, int row, int col);
+//print at 4 corners the values all around
 
 //==================================================================================
 //	Application-level global variables
@@ -127,7 +129,7 @@ void displayState(void)
 	numMessages = 3;
 	sprintf(message[0], "System time: %ld", currentTime);
 	sprintf(message[1], "Time since launch: %ld", currentTime-launchTime);
-	sprintf(message[2], "I like cheese");
+	sprintf(message[2], "This is Stressful");
 	
 	
 	//---------------------------------------------------------
@@ -156,8 +158,6 @@ void handleKeyboardEvent(unsigned char c, int x, int y){
 
 		//	Feel free to add more keyboard input, but then please document that
 		//	in the report.
-		
-		
 		default:
 			ok = 1;
 			break;
@@ -241,8 +241,6 @@ void initializeApplication(void)
 
     //CREATE A LIST OF IMAGES
     const int numOfImages =11;
-    //const char *images[numOfImages] =
-    //	const string hardCodedInput = "./images/_MG_6291.tga";
 	string images[numOfImages] = {"./images/_MG_6291.tga","./images/_MG_6293.tga","./images/_MG_6294.tga",
                                   "./images/_MG_6295.tga","./images/_MG_6296.tga","./images/_MG_6297.tga",
                                   "./images/_MG_6298.tga","./images/_MG_6299.tga","./images/_MG_6300.tga",
@@ -252,6 +250,15 @@ void initializeApplication(void)
     //imageOut = readTGA(hardCodedInput.c_str());
 	launchTime = time(NULL);
 }
+/**
+ * Main reads 1 image
+ * calls to computeDelta
+ *
+ *
+ *
+ *
+ *
+ */
 
 
 
