@@ -229,6 +229,8 @@ void myResize(int w, int h)
 
 void displayImagePane(void)
 {
+    //INSIDE HERE WE PERIODICALLY DO OUR CALCULATIONS
+
 	glutSetWindow(gSubwindow[IMAGE_PANE]);
 	
 	displayImage(scaleX, scaleY);
@@ -373,6 +375,8 @@ void initializeFrontEnd(int argc, char** argv, ImageStruct* imageOut)
 	glutKeyboardFunc(myKeyboard);
 	glutMouseFunc(myImagePaneMouse);
 	glutDisplayFunc(displayImagePane);
+
+
 
 	scaleX = (0.f + IMAGE_PANE_WIDTH)/imageOut->width;
 	scaleY = (0.f + IMAGE_PANE_HEIGHT)/imageOut->height;

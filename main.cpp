@@ -8,13 +8,15 @@
 
 #include <iostream>
 #include <string>
-//
+#include <vector>
+
 #include <cstdio>
 #include <cstdlib>
 #include <time.h>
 //
 #include "gl_frontEnd.h"
 #include "imageIO_TGA.h"
+
 using namespace std;
 
 //==================================================================================
@@ -23,8 +25,8 @@ using namespace std;
 void myKeyboard(unsigned char c, int x, int y);
 void initializeApplication(void);
 //NEED TO CREATE THIS
-int computeDelta(ImageStruct* img, int row, int col);
-//print at 4 corners the values all around
+//v1 print at 4 corners the values all around
+//v2 print all rgb(bgr here) and grayvalue inside search window & print max min delta
 
 //==================================================================================
 //	Application-level global variables
@@ -52,7 +54,8 @@ const int MAX_LENGTH_MESSAGE = 32;
 char** message;
 int numMessages;
 time_t launchTime;
-
+//DEFINING OUR IMAGE STRUCT
+vector<ImageStruct*> imageStack;
 //	This is the image that you should be writing into.  In this
 //	handout, I simply read one of the input images into it.
 //	You should not rename this variable unless you plan to mess
@@ -63,7 +66,7 @@ ImageStruct* imageOut;
 //	The variables defined here are for you to modify and add to
 //------------------------------------------------------------------
 #define IN_PATH		"./images/"
-#define OUT_PATH	"./Output/"
+#define OUT_PATH	"./output/"
 
 
 //==================================================================================
@@ -71,6 +74,9 @@ ImageStruct* imageOut;
 //	Some parts are "don't touch."  Other parts need your intervention
 //	to make sure that access to critical section is properly synchronized
 //==================================================================================
+
+
+
 
 //	I can't see any reason why you may need/want to change this
 //	function
@@ -107,7 +113,6 @@ void displayImage(GLfloat scaleX, GLfloat scaleY)
 				  imageOut->raster);
 
 }
-
 
 void displayState(void)
 {
@@ -155,9 +160,10 @@ void handleKeyboardEvent(unsigned char c, int x, int y){
 			//	If you want to do some cleanup, here would be the time to do it.
 			exit(0);
 			break;
-
-		//	Feel free to add more keyboard input, but then please document that
-		//	in the report.
+        case 32:
+            //Change the image to start of series
+            imageOut = imageStack[0];
+            break;
 		default:
 			ok = 1;
 			break;
@@ -173,6 +179,11 @@ void handleKeyboardEvent(unsigned char c, int x, int y){
 //------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
+    //Get input list
+    for (int k = 3; k<argc; k++){
+        imageStack.push_back(readTGA(argv[k]));
+    }
+    //cout << computeDelta(imageStack[0],0,0);
 	//	Now we can do application-level initialization
 	initializeApplication();
 
@@ -240,24 +251,15 @@ void initializeApplication(void)
 	//	change.
 
     //CREATE A LIST OF IMAGES
-    const int numOfImages =11;
-	string images[numOfImages] = {"./images/_MG_6291.tga","./images/_MG_6293.tga","./images/_MG_6294.tga",
-                                  "./images/_MG_6295.tga","./images/_MG_6296.tga","./images/_MG_6297.tga",
-                                  "./images/_MG_6298.tga","./images/_MG_6299.tga","./images/_MG_6300.tga",
-                                  "./images/_MG_6301.tga","./images/_MG_6302.tga"};
     const string hardCodedInput = "_MG_6386.tga";
-	imageOut = readTGA(images[0].c_str());
-    //imageOut = readTGA(hardCodedInput.c_str());
+
+	imageOut = readTGA(hardCodedInput.c_str());
+    //imageOut = imageStack[0];
 	launchTime = time(NULL);
 }
 /**
  * Main reads 1 image
  * calls to computeDelta
- *
- *
- *
- *
- *
  */
 
 
