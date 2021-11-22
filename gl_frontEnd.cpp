@@ -15,9 +15,12 @@
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
+
 //
 #include "rasterImage.h"
 #include "gl_frontEnd.h"
+#include "calc.h"
+
 
 const extern int MAX_NUM_MESSAGES;
 const extern int MAX_LENGTH_MESSAGE;
@@ -237,6 +240,9 @@ void displayImagePane(void)
 	
 	glutSwapBuffers();
 	glutSetWindow(gMainWindow);
+
+    //Calculations:
+    //computeDelta(imageOut,0,0);
 }
 
 void displayStatePane(void)
@@ -247,6 +253,8 @@ void displayStatePane(void)
 	
 	glutSwapBuffers();
 	glutSetWindow(gMainWindow);
+
+
 }
 
 void myDisplay(void)
@@ -346,6 +354,7 @@ void myTimeCB(int d)
 
 void initializeFrontEnd(int argc, char** argv, ImageStruct* imageOut)
 {
+    //computeDelta(imageOut,0,0);
 	//	Initialize glut and create a new window
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);

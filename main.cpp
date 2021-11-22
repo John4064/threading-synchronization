@@ -14,6 +14,7 @@
 #include <cstdlib>
 #include <time.h>
 //
+#include "calc.h"
 #include "gl_frontEnd.h"
 #include "imageIO_TGA.h"
 
@@ -183,7 +184,7 @@ int main(int argc, char** argv)
     for (int k = 3; k<argc; k++){
         imageStack.push_back(readTGA(argv[k]));
     }
-    //cout << computeDelta(imageStack[0],0,0);
+
 	//	Now we can do application-level initialization
 	initializeApplication();
 
@@ -223,7 +224,6 @@ int main(int argc, char** argv)
 
 void initializeApplication(void)
 {
-
 	//	I preallocate the max number of messages at the max message
 	//	length.  This goes against some of my own principles about
 	//	good programming practice, but I do that so that you can
@@ -233,7 +233,6 @@ void initializeApplication(void)
 	message = (char**) malloc(MAX_NUM_MESSAGES*sizeof(char*));
 	for (int k=0; k<MAX_NUM_MESSAGES; k++)
 		message[k] = (char*) malloc((MAX_LENGTH_MESSAGE+1)*sizeof(char));
-	
 	//---------------------------------------------------------------
 	//	All the code below to be replaced/removed
 	//	I load an image to have something to look at
@@ -242,7 +241,7 @@ void initializeApplication(void)
 	//	that the C/C++ default random generator is junk and that the people who use it
 	//	are at best fools.  Here I am not using it to produce "serious" data (as in a
 	//	simulation), only some color, in meant-to-be-thrown-away code
-	
+
 	//	seed the pseudo-random generator
 	srand((unsigned int) time(NULL));
 
@@ -254,7 +253,14 @@ void initializeApplication(void)
     const string hardCodedInput = "_MG_6386.tga";
 
 	imageOut = readTGA(hardCodedInput.c_str());
+	//Dead Code
     //imageOut = imageStack[0];
+	//ImageStruct imgOut = ImageStruct(imageStack[0]->width,imageStack[0]->height,imageStack[0]-> type, 1);
+
+	for(int i = 0; i <imageStack.size(); i++){
+		cout << computeDelta(imageStack[i],0,0);
+		cout << '\n';
+	}
 	launchTime = time(NULL);
 }
 /**
